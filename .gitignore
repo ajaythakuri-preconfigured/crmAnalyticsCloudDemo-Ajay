@@ -1,0 +1,12 @@
+# Salesforce DX
+.sfdx/
+.sf/
+.localdevserver/
+
+# Node
+node_modules/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

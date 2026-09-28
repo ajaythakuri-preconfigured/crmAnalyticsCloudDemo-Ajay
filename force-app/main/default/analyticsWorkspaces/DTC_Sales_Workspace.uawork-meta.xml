@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticsWorkspace xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <masterLabel>DTC Sales</masterLabel>
+    <workspaceAssetRelationships>
+        <asset>Opportunity_Home__dll</asset>
+        <assetType>MktDataLakeObject</assetType>
+        <assetUsageType>Referenced</assetUsageType>
+        <workspace>DTC_Sales_Workspace</workspace>
+    </workspaceAssetRelationships>
+    <workspaceAssetRelationships>
+        <asset>DTC_Sales_Analytics</asset>
+        <assetType>SemanticModel</assetType>
+        <assetUsageType>Referenced</assetUsageType>
+        <workspace>DTC_Sales_Workspace</workspace>
+    </workspaceAssetRelationships>
+    <workspaceAssetRelationships>
+        <asset xsi:nil="true"/>
+        <assetType>AnalyticsDashboard</assetType>
+        <assetUsageType>Created</assetUsageType>
+        <workspace>DTC_Sales_Workspace</workspace>
+    </workspaceAssetRelationships>
+</AnalyticsWorkspace>
