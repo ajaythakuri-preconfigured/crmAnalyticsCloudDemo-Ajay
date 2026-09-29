@@ -24,13 +24,6 @@
                 <row>0</row>
                 <rowspan>4</rowspan>
             </pageWidgets>
-            <pageWidgets>
-                <analyticsDashboardWidget>filter_year</analyticsDashboardWidget>
-                <colspan>12</colspan>
-                <column>36</column>
-                <row>0</row>
-                <rowspan>4</rowspan>
-            </pageWidgets>
             <!-- KPI Row: 4 metric tiles -->
             <pageWidgets>
                 <analyticsDashboardWidget>kpi_total</analyticsDashboardWidget>
@@ -97,17 +90,6 @@
         <widgetName>title_text</widgetName>
     </widgets>
 
-    <!-- Year Filter Widget -->
-    <widgets>
-        <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
-        <filterWidgetDefs>
-            <initialValues>null</initialValues>
-            <parameters>{"viewType":"listcard","widgetStyle":{"backgroundColor":"#03234D","borderEdges":[],"borderColor":"#03234D","borderWidth":0,"borderRadius":0,"color":"#ffffff","fontColor":"#ffffff"},"filterOption":{"fieldName":"Fiscal_Year_clc","dataType":"String","selectionType":"single"}}</parameters>
-            <source>DTC_Sales_Analytics</source>
-        </filterWidgetDefs>
-        <type>filter</type>
-        <widgetName>filter_year</widgetName>
-    </widgets>
 
     <!-- KPI Tile 1: Total Pipeline -->
     <widgets>
@@ -159,7 +141,7 @@
         <type>visualization</type>
         <vizWidgetDefs>
             <analyticsVisualization>New_Visualization2</analyticsVisualization>
-            <parameters>{"widgetStyle":{"backgroundColor":"--slds-g-color-palette-neutral-100","borderEdges":[],"borderColor":"--slds-g-color-palette-neutral-40","borderWidth":1,"borderRadius":0},"legendPosition":"Right","receiveFilterSource":{"filterMode":"all","widgetIds":["filter_year"]}}</parameters>
+            <parameters>{"widgetStyle":{"backgroundColor":"--slds-g-color-palette-neutral-100","borderEdges":[],"borderColor":"--slds-g-color-palette-neutral-40","borderWidth":1,"borderRadius":0},"legendPosition":"Right","receiveFilterSource":{"filterMode":"all","widgetIds":[]}}</parameters>
         </vizWidgetDefs>
         <widgetName>chart_cumulative_won</widgetName>
     </widgets>
