@@ -139,7 +139,7 @@
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <filterWidgetDefs>
             <initialValues>null</initialValues>
-            <parameters>{&quot;viewType&quot;:&quot;list&quot;,&quot;filterOption&quot;:{&quot;objectName&quot;:&quot;Opportunity_Home&quot;,&quot;fieldName&quot;:&quot;Fiscal_Year&quot;,&quot;dataType&quot;:&quot;Number&quot;,&quot;selectionType&quot;:&quot;multiple&quot;},&quot;isLabelHidden&quot;:true}</parameters>
+            <parameters>{&quot;viewType&quot;:&quot;toggle&quot;,&quot;filterOption&quot;:{&quot;objectName&quot;:&quot;Opportunity_Home&quot;,&quot;fieldName&quot;:&quot;Fiscal_Year_clc&quot;,&quot;dataType&quot;:&quot;Text&quot;,&quot;selectionType&quot;:&quot;multiple&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
             <source>DTC_Sales_Analytics</source>
         </filterWidgetDefs>
         <label>Fiscal Year</label>
