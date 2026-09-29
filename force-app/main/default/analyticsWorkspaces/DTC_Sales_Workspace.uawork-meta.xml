@@ -10,7 +10,7 @@
     <workspaceAssetRelationships>
         <asset>DTC_Sales_Analytics</asset>
         <assetType>SemanticModel</assetType>
-        <assetUsageType>Referenced</assetUsageType>
+        <assetUsageType>Created</assetUsageType>
         <workspace>DTC_Sales_Workspace</workspace>
     </workspaceAssetRelationships>
     <workspaceAssetRelationships>

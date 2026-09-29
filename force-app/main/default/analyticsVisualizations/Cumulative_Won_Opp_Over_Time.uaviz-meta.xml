@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticsVisualization xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <analyticsWorkspace>DTC_Sales_Workspace</analyticsWorkspace>
+    <dataSource>DTC_Sales_Analytics</dataSource>
+    <fields>
+        <displayCategory>Discrete</displayCategory>
+        <fieldKey>F1</fieldKey>
+        <fieldName>CloseDate__c</fieldName>
+        <function>DatePartYear</function>
+        <objectName>Opportunity_Home__dll</objectName>
+        <role>Dimension</role>
+        <type>Field</type>
+    </fields>
+    <fields>
+        <displayCategory>Continuous</displayCategory>
+        <fieldKey>F2</fieldKey>
+        <fieldName>Amount__c</fieldName>
+        <function>Sum</function>
+        <objectName>Opportunity_Home__dll</objectName>
+        <role>Measure</role>
+        <type>Field</type>
+    </fields>
+    <masterLabel>Cumulative Won Opportunities Over Time</masterLabel>
+    <version>67.14</version>
+    <views>
+        <fullName>Cumulative_Won_Opp_Over_Time_default</fullName>
+        <isOriginal>true</isOriginal>
+        <masterLabel>default</masterLabel>
+        <version>67.14</version>
+        <viewSpecification>{"filter":{"filters":[]},"sortOrders":{"fields":{},"rows":[],"columns":[]},"style":{"headers":{"rows":{"sizing":{"fieldWidth":{}}},"columns":{"sizing":{"fieldHeight":{}}}}}}</viewSpecification>
+    </views>
+    <visualSpecification>eyJsYXlvdXQiOiJWaXpxbCIsImxlZ2VuZHMiOnt9LCJzdHlsZXNoZWV0Ijp7InJ1bGVzIjpbeyJzZWxlY3RvciI6IkhlYWRpbmdzIiwic3R5bGUiOnsiZm9udCI6eyJzaXplIjoxMH19fSx7InNlbGVjdG9yIjoiQm9keVRleHQiLCJzdHlsZSI6eyJmb250Ijp7InNpemUiOjEwfX19XX0sInJvd3MiOlsiRjIiXSwiY29sdW1ucyI6WyJGMSJdLCJtYXJrcyI6eyJwYW5lcyI6eyJ0eXBlIjoiQmFyIiwiaXNBdXRvbWF0aWMiOmZhbHNlLCJzdGFjayI6eyJpc0F1dG9tYXRpYyI6ZmFsc2UsImlzU3RhY2tlZCI6dHJ1ZX0sImVuY29kaW5ncyI6W119LCJmaWVsZHMiOnt9LCJoZWFkZXJzIjp7InR5cGUiOiJUZXh0IiwiZW5jb2RpbmdzIjpbXSwiaXNBdXRvbWF0aWMiOnRydWUsInN0YWNrIjp7ImlzQXV0b21hdGljIjp0cnVlLCJpc1N0YWNrZWQiOmZhbHNlfX19LCJyZWZlcmVuY2VMaW5lcyI6e30sImZvcmVjYXN0cyI6e30sIm1lYXN1cmVWYWx1ZXMiOltdLCJzdHlsZSI6eyJ0aXRsZSI6eyJpc1Zpc2libGUiOnRydWV9LCJmaWVsZExhYmVscyI6eyJyb3dzIjp7InNob3dMYWJlbHMiOnRydWUsInNob3dEaXZpZGVyTGluZSI6ZmFsc2V9LCJjb2x1bW5zIjp7InNob3dMYWJlbHMiOnRydWUsInNob3dEaXZpZGVyTGluZSI6ZmFsc2V9fX0sImZpdCI6IlN0YW5kYXJkIiwic2hvd0RhdGFQbGFjZWhvbGRlciI6ZmFsc2UsImhlYWRlcnMiOnsiZmllbGRzIjp7IkYyIjp7ImlzVmlzaWJsZSI6dHJ1ZX19LCJyb3dzIjp7Im1lcmdlUmVwZWF0ZWRDZWxscyI6dHJ1ZSwic2hvd0luZGV4IjpmYWxzZSwic2l6aW5nIjp7ImZpZWxkV2lkdGgiOnt9fX0sImNvbHVtbnMiOnsibWVyZ2VSZXBlYXRlZENlbGxzIjp0cnVlLCJzaG93SW5kZXgiOmZhbHNlLCJzaXppbmciOnsiZmllbGRIZWlnaHQiOnt9fX19fQ==</visualSpecification>
+    <workspaceAssetRelationships>
+        <asset xsi:nil="true"/>
+        <assetType>AnalyticsVisualization</assetType>
+        <assetUsageType>Created</assetUsageType>
+        <workspace>DTC_Sales_Workspace</workspace>
+    </workspaceAssetRelationships>
+</AnalyticsVisualization>

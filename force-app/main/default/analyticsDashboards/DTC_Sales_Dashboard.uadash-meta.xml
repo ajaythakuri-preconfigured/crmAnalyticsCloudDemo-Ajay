@@ -106,7 +106,7 @@
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <metricWidgetDefs>
             <parameters>{"metricOption":{"layout":{},"sdmApiName":"DTC_Sales_Analytics"},"receiveFilterSource":{"filterMode":"all","publishers":[],"widgetIds":[]}}</parameters>
-            <source>Total_Pipeline_Amount_mtc</source>
+            <source>Total_Pipeline_mtc</source>
         </metricWidgetDefs>
         <type>metric</type>
         <widgetName>kpi_total</widgetName>
