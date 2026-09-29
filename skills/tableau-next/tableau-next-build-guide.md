@@ -250,6 +250,20 @@ Add each dimension by clicking "+ Add Dimension":
 | Is Closed | IsClosed | Boolean | |
 | Is Won | IsWon | Boolean | |
 
+#### ⚠️ Tableau Next Dimension Limitations (Confirmed from Live Org)
+
+| Dimension Type | Supported | Filter Source | Notes |
+|---------------|-----------|--------------|-------|
+| **Calculated Dimension** | ✅ Yes | ❌ No | Formula-based (e.g. `STR([Obj].[Field])`). Cannot be used as dashboard filter source — clicking filter returns formula expression as error |
+| **Dimension Hierarchy** | ✅ Yes | ⚠️ Partial | Requires each level to have a pre-existing **dimension-type field** in DLO. Number fields (FiscalYear__c) and Timestamp fields cannot fill Year/Quarter levels directly — needs a dedicated year-granularity dimension field |
+| **Native Field Dimension** | ❓ Unknown | ❓ Unknown | "Add Dimension" UI path may only expose calculated + hierarchy options; plain field dimension may not be available in current Tableau Next version |
+
+**Filter Widget Known Limitation:**
+- Dashboard filter widgets (`filterWidgetDefs`) require a **native Semantic Model dimension** as their source
+- Calculated dimensions cause a formula expression error on filter click
+- If the DLO does not have a pre-defined year/month dimension field (dimension type, not measure), year-based filtering via Semantic Model is not achievable without Data Cloud Calculated Insights
+- **Workaround:** Use a Calculated Insight (SQL) in Data Cloud to pre-compute a year field as a dimension type, then expose it in the Semantic Model as a native dimension
+
 **Join Account fields (for Industry, Country):**
 ```
 In Semantic Model → Relationships → Add Join
