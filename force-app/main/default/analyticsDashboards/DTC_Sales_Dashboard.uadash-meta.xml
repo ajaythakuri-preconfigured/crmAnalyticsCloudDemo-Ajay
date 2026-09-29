@@ -102,7 +102,7 @@
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <filterWidgetDefs>
             <initialValues>null</initialValues>
-            <parameters>{"viewType":"listcard","widgetStyle":{"backgroundColor":"#03234D","borderEdges":[],"borderColor":"#03234D","borderWidth":0,"borderRadius":0},"filterOption":{"objectName":"Opportunity_Home__dll","fieldName":"FiscalYear__c","dataType":"Number","selectionType":"single"}}</parameters>
+            <parameters>{"viewType":"listcard","widgetStyle":{"backgroundColor":"#03234D","borderEdges":[],"borderColor":"#03234D","borderWidth":0,"borderRadius":0},"filterOption":{"fieldName":"Fiscal_Year_clc","dataType":"Number","selectionType":"single"}}</parameters>
             <source>DTC_Sales_Analytics</source>
         </filterWidgetDefs>
         <type>filter</type>
