@@ -28,7 +28,7 @@
         <role>Dimension</role>
         <type>Field</type>
     </fields>
-    <masterLabel>Won Opp Over Time</masterLabel>
+    <masterLabel>Cumulative Won Opportunities Over Time</masterLabel>
     <version>67.14</version>
     <views>
         <fullName>New_Visualization2_default</fullName>
