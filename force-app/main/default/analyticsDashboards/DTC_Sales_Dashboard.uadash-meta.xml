@@ -60,6 +60,14 @@
                 <row>5</row>
                 <rowspan>12</rowspan>
             </pageWidgets>
+            <!-- Chart Row: Won Opp Over Time -->
+            <pageWidgets>
+                <analyticsDashboardWidget>chart_cumulative_won</analyticsDashboardWidget>
+                <colspan>48</colspan>
+                <column>0</column>
+                <row>18</row>
+                <rowspan>22</rowspan>
+            </pageWidgets>
         </pages>
         <rowHeight>20</rowHeight>
         <style>{"backgroundColor":"--slds-g-color-palette-neutral-100","gutterColor":"--slds-g-color-palette-neutral-95","cellSpacingX":4,"cellSpacingY":4}</style>
@@ -143,6 +151,17 @@
         </metricWidgetDefs>
         <type>metric</type>
         <widgetName>kpi_lost</widgetName>
+    </widgets>
+
+    <!-- Chart: Won Opp Over Time -->
+    <widgets>
+        <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
+        <type>visualization</type>
+        <vizWidgetDefs>
+            <analyticsVisualization>New_Visualization2</analyticsVisualization>
+            <parameters>{"widgetStyle":{"backgroundColor":"--slds-g-color-palette-neutral-100","borderEdges":[],"borderColor":"--slds-g-color-palette-neutral-40","borderWidth":1,"borderRadius":0},"legendPosition":"Right","receiveFilterSource":{"filterMode":"all","widgetIds":["filter_year"]}}</parameters>
+        </vizWidgetDefs>
+        <widgetName>chart_cumulative_won</widgetName>
     </widgets>
 
     <workspaceAssetRelationships>
