@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AnalyticsDashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <analyticsWorkspace>DTC_Sales_Workspace</analyticsWorkspace>
+    <customConfig>null</customConfig>
     <layouts>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <columnCount>48</columnCount>
@@ -9,7 +11,6 @@
             <index>0</index>
             <label>DTC Sales</label>
             <pageName>page_dtc_sales</pageName>
-            <!-- Header Row: Title + Year Filter -->
             <pageWidgets>
                 <analyticsDashboardWidget>header_container</analyticsDashboardWidget>
                 <colspan>48</colspan>
@@ -24,128 +25,109 @@
                 <row>0</row>
                 <rowspan>4</rowspan>
             </pageWidgets>
-            <!-- KPI Row: 4 metric tiles -->
             <pageWidgets>
                 <analyticsDashboardWidget>kpi_total</analyticsDashboardWidget>
-                <colspan>12</colspan>
-                <column>0</column>
+                <colspan>7</colspan>
+                <column>1</column>
                 <row>5</row>
-                <rowspan>12</rowspan>
+                <rowspan>4</rowspan>
             </pageWidgets>
             <pageWidgets>
                 <analyticsDashboardWidget>kpi_open</analyticsDashboardWidget>
-                <colspan>12</colspan>
-                <column>12</column>
+                <colspan>7</colspan>
+                <column>14</column>
                 <row>5</row>
-                <rowspan>12</rowspan>
+                <rowspan>4</rowspan>
             </pageWidgets>
             <pageWidgets>
                 <analyticsDashboardWidget>kpi_won</analyticsDashboardWidget>
-                <colspan>12</colspan>
-                <column>24</column>
+                <colspan>7</colspan>
+                <column>27</column>
                 <row>5</row>
-                <rowspan>12</rowspan>
+                <rowspan>4</rowspan>
             </pageWidgets>
             <pageWidgets>
                 <analyticsDashboardWidget>kpi_lost</analyticsDashboardWidget>
-                <colspan>12</colspan>
-                <column>36</column>
+                <colspan>7</colspan>
+                <column>40</column>
                 <row>5</row>
-                <rowspan>12</rowspan>
+                <rowspan>4</rowspan>
             </pageWidgets>
-            <!-- Chart Row: Won Opp Over Time -->
             <pageWidgets>
                 <analyticsDashboardWidget>chart_cumulative_won</analyticsDashboardWidget>
                 <colspan>48</colspan>
                 <column>0</column>
-                <row>18</row>
+                <row>10</row>
                 <rowspan>22</rowspan>
             </pageWidgets>
         </pages>
         <rowHeight>20</rowHeight>
-        <style>{"backgroundColor":"--slds-g-color-palette-neutral-100","gutterColor":"--slds-g-color-palette-neutral-95","cellSpacingX":4,"cellSpacingY":4}</style>
+        <style>{&quot;backgroundColor&quot;:&quot;--slds-g-color-palette-neutral-100&quot;,&quot;gutterColor&quot;:&quot;--slds-g-color-palette-neutral-95&quot;,&quot;cellSpacingX&quot;:4,&quot;cellSpacingY&quot;:4}</style>
     </layouts>
-    <analyticsWorkspace>DTC_Sales_Workspace</analyticsWorkspace>
     <masterLabel>DTC Sales</masterLabel>
-    <style>{"widgetStyle":{"backgroundColor":"--slds-g-color-palette-neutral-100","borderEdges":[],"borderColor":"--slds-g-color-palette-neutral-40","borderWidth":1,"borderRadius":0}}</style>
+    <style>{&quot;widgetStyle&quot;:{&quot;backgroundColor&quot;:&quot;--slds-g-color-palette-neutral-100&quot;,&quot;borderEdges&quot;:[],&quot;borderColor&quot;:&quot;--slds-g-color-palette-neutral-40&quot;,&quot;borderWidth&quot;:1,&quot;borderRadius&quot;:0}}</style>
     <version>67.14</version>
-
-    <!-- Header Container Widget -->
     <widgets>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <containerWidgetDefs>
-            <parameters>{"widgetStyle":{"backgroundColor":"#03234D","borderEdges":[],"borderColor":"#03234D","borderWidth":0,"borderRadius":0}}</parameters>
+            <parameters>{&quot;widgetStyle&quot;:{&quot;backgroundColor&quot;:&quot;#03234D&quot;,&quot;borderEdges&quot;:[],&quot;borderColor&quot;:&quot;#03234D&quot;,&quot;borderWidth&quot;:0,&quot;borderRadius&quot;:0}}</parameters>
         </containerWidgetDefs>
         <type>container</type>
         <widgetName>header_container</widgetName>
     </widgets>
-
-    <!-- Title Text Widget -->
     <widgets>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <textWidgetDefs>
-            <parameters>{"content":[{"attributes":{"color":"#ffffff","size":"28px","bold":true},"insert":"DTC Sales"},{"attributes":{"align":"left"},"insert":"\n"}],"widgetStyle":{"backgroundColor":"#03234D","borderEdges":[],"borderColor":"#03234D","borderWidth":0,"borderRadius":0},"conditionalFormattingRules":[]}</parameters>
+            <parameters>{&quot;content&quot;:[{&quot;attributes&quot;:{&quot;color&quot;:&quot;#ffffff&quot;,&quot;size&quot;:&quot;28px&quot;,&quot;bold&quot;:true},&quot;insert&quot;:&quot;DTC Sales&quot;,&quot;rules&quot;:[]},{&quot;attributes&quot;:{&quot;align&quot;:&quot;left&quot;},&quot;insert&quot;:&quot;\n&quot;,&quot;rules&quot;:[]}],&quot;widgetStyle&quot;:{&quot;backgroundColor&quot;:&quot;#03234D&quot;,&quot;borderEdges&quot;:[],&quot;borderColor&quot;:&quot;#03234D&quot;,&quot;borderWidth&quot;:0,&quot;borderRadius&quot;:0},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]},&quot;verticalAlignment&quot;:&quot;top&quot;,&quot;conditionalFormattingRules&quot;:[]}</parameters>
         </textWidgetDefs>
         <type>text</type>
         <widgetName>title_text</widgetName>
     </widgets>
-
-
-    <!-- KPI Tile 1: Total Pipeline -->
     <widgets>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <metricWidgetDefs>
-            <parameters>{"metricOption":{"layout":{},"sdmApiName":"DTC_Sales_Analytics"},"receiveFilterSource":{"filterMode":"all","publishers":[],"widgetIds":[]}}</parameters>
+            <parameters>{&quot;metricOption&quot;:{&quot;layout&quot;:{&quot;showDateRange&quot;:false,&quot;compact&quot;:true,&quot;showChart&quot;:false,&quot;showInsights&quot;:false,&quot;componentVisibility&quot;:{&quot;title&quot;:false,&quot;details&quot;:false,&quot;value&quot;:true,&quot;comparison&quot;:false,&quot;chart&quot;:false,&quot;goals&quot;:false,&quot;insights&quot;:false}},&quot;sdmApiName&quot;:&quot;DTC_Sales_Analytics&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[],&quot;widgetIds&quot;:[]}}</parameters>
             <source>Total_Pipeline_mtc</source>
         </metricWidgetDefs>
         <type>metric</type>
         <widgetName>kpi_total</widgetName>
     </widgets>
-
-    <!-- KPI Tile 2: Open Pipeline -->
     <widgets>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <metricWidgetDefs>
-            <parameters>{"metricOption":{"layout":{},"sdmApiName":"DTC_Sales_Analytics"},"receiveFilterSource":{"filterMode":"all","publishers":[],"widgetIds":[]}}</parameters>
+            <parameters>{&quot;metricOption&quot;:{&quot;layout&quot;:{&quot;showDateRange&quot;:false,&quot;compact&quot;:true,&quot;showChart&quot;:false,&quot;showInsights&quot;:false,&quot;componentVisibility&quot;:{&quot;title&quot;:false,&quot;details&quot;:false,&quot;value&quot;:true,&quot;comparison&quot;:false,&quot;chart&quot;:false,&quot;goals&quot;:false,&quot;insights&quot;:false}},&quot;sdmApiName&quot;:&quot;DTC_Sales_Analytics&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[],&quot;widgetIds&quot;:[]}}</parameters>
             <source>Open_Pipeline_mtc</source>
         </metricWidgetDefs>
         <type>metric</type>
         <widgetName>kpi_open</widgetName>
     </widgets>
-
-    <!-- KPI Tile 3: Won Revenue -->
     <widgets>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <metricWidgetDefs>
-            <parameters>{"metricOption":{"layout":{"accentColor":"#43B263"},"sdmApiName":"DTC_Sales_Analytics"},"receiveFilterSource":{"filterMode":"all","publishers":[],"widgetIds":[]}}</parameters>
+            <parameters>{&quot;metricOption&quot;:{&quot;layout&quot;:{&quot;showDateRange&quot;:false,&quot;compact&quot;:true,&quot;accentColor&quot;:&quot;#43B263&quot;,&quot;showChart&quot;:false,&quot;showInsights&quot;:false,&quot;componentVisibility&quot;:{&quot;title&quot;:false,&quot;details&quot;:false,&quot;value&quot;:true,&quot;comparison&quot;:false,&quot;chart&quot;:false,&quot;goals&quot;:false,&quot;insights&quot;:false}},&quot;sdmApiName&quot;:&quot;DTC_Sales_Analytics&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[],&quot;widgetIds&quot;:[]}}</parameters>
             <source>Won_Revenue_mtc</source>
         </metricWidgetDefs>
         <type>metric</type>
         <widgetName>kpi_won</widgetName>
     </widgets>
-
-    <!-- KPI Tile 4: Lost Revenue -->
     <widgets>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <metricWidgetDefs>
-            <parameters>{"metricOption":{"layout":{"accentColor":"#E74C3C"},"sdmApiName":"DTC_Sales_Analytics"},"receiveFilterSource":{"filterMode":"all","publishers":[],"widgetIds":[]}}</parameters>
+            <parameters>{&quot;metricOption&quot;:{&quot;layout&quot;:{&quot;showDateRange&quot;:false,&quot;compact&quot;:true,&quot;accentColor&quot;:&quot;#E74C3C&quot;,&quot;showChart&quot;:false,&quot;showInsights&quot;:false,&quot;componentVisibility&quot;:{&quot;title&quot;:false,&quot;details&quot;:false,&quot;value&quot;:true,&quot;comparison&quot;:false,&quot;chart&quot;:false,&quot;goals&quot;:false,&quot;insights&quot;:false}},&quot;sdmApiName&quot;:&quot;DTC_Sales_Analytics&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[],&quot;widgetIds&quot;:[]}}</parameters>
             <source>Lost_Revenuew_mtc</source>
         </metricWidgetDefs>
         <type>metric</type>
         <widgetName>kpi_lost</widgetName>
     </widgets>
-
-    <!-- Chart: Won Opp Over Time -->
     <widgets>
         <analyticsDashboard>DTC_Sales_Dashboard</analyticsDashboard>
         <type>visualization</type>
         <vizWidgetDefs>
             <analyticsVisualization>New_Visualization2</analyticsVisualization>
-            <parameters>{"widgetStyle":{"backgroundColor":"--slds-g-color-palette-neutral-100","borderEdges":[],"borderColor":"--slds-g-color-palette-neutral-40","borderWidth":1,"borderRadius":0},"legendPosition":"Right","receiveFilterSource":{"filterMode":"all","widgetIds":[]}}</parameters>
+            <parameters>{&quot;widgetStyle&quot;:{&quot;backgroundColor&quot;:&quot;--slds-g-color-palette-neutral-100&quot;,&quot;borderEdges&quot;:[],&quot;borderColor&quot;:&quot;--slds-g-color-palette-neutral-40&quot;,&quot;borderWidth&quot;:1,&quot;borderRadius&quot;:0},&quot;legendPosition&quot;:&quot;Right&quot;,&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
         </vizWidgetDefs>
         <widgetName>chart_cumulative_won</widgetName>
     </widgets>
-
     <workspaceAssetRelationships>
         <asset xsi:nil="true"/>
         <assetType>AnalyticsDashboard</assetType>

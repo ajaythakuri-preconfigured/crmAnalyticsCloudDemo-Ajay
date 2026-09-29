@@ -348,6 +348,54 @@ Color:        Red (#E74C3C)
 Size:         25% width
 ```
 
+#### ⭐ Metric Tile Card Setup — Display Mode (IMPORTANT)
+
+By default, Tableau Next metric tiles render in **rich view** which includes:
+- Sparkline/trend chart
+- Date range label (e.g., "Jan 1, 1970 – Sep 28, 2026")
+- AI-generated insight text (e.g., "A high volatility trend has been observed...")
+
+**To show only the metric value (clean card style — matching CRM Analytics):**
+
+In the Dashboard Editor:
+1. Click the metric tile to select it
+2. In the right panel → find **"Widget"** settings section
+3. Open **"Card Setup"**
+4. Change display mode to **"Show Value"**
+5. This hides the sparkline, date range, and AI insights — shows only the number
+
+> ✅ Apply "Show Value" to all 4 KPI tiles for the clean card-style display matching CRM Analytics
+
+**XML parameter mapping (metricWidgetDefs) — confirmed via retrieve:**
+
+The `componentVisibility` object inside `metricOption.layout` controls which parts of the tile render:
+
+```json
+"metricOption": {
+  "layout": {
+    "compact": true,
+    "showChart": false,
+    "showInsights": false,
+    "showDateRange": false,
+    "componentVisibility": {
+      "title": false,
+      "details": false,
+      "value": true,
+      "comparison": false,
+      "chart": false,
+      "goals": false,
+      "insights": false
+    }
+  },
+  "sdmApiName": "DTC_Sales_Analytics"
+}
+```
+
+- `value: true` → shows only the metric number
+- All other keys `false` → hides sparkline, date range, AI insights, comparison, goals
+- Add `"accentColor": "#43B263"` (green) or `"#E74C3C"` (red) inside `layout` for colored accent bars
+- Total Pipeline and Open Pipeline have no `accentColor` (defaults to neutral)
+
 ### 2.4 Build Cumulative Time Chart (Row 3) ⚠️ Most Complex
 ```
 Add: Line Chart (or Area Chart)
