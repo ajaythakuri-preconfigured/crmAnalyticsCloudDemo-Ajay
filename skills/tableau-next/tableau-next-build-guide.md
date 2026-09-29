@@ -258,11 +258,53 @@ Add each dimension by clicking "+ Add Dimension":
 | **Dimension Hierarchy** | ✅ Yes | ⚠️ Partial | Requires each level to have a pre-existing **dimension-type field** in DLO. Number fields (FiscalYear__c) and Timestamp fields cannot fill Year/Quarter levels directly — needs a dedicated year-granularity dimension field |
 | **Native Field Dimension** | ❓ Unknown | ❓ Unknown | "Add Dimension" UI path may only expose calculated + hierarchy options; plain field dimension may not be available in current Tableau Next version |
 
-**Filter Widget Known Limitation:**
-- Dashboard filter widgets (`filterWidgetDefs`) require a **native Semantic Model dimension** as their source
-- Calculated dimensions cause a formula expression error on filter click
-- If the DLO does not have a pre-defined year/month dimension field (dimension type, not measure), year-based filtering via Semantic Model is not achievable without Data Cloud Calculated Insights
-- **Workaround:** Use a Calculated Insight (SQL) in Data Cloud to pre-compute a year field as a dimension type, then expose it in the Semantic Model as a native dimension
+#### ✅ CORRECT Approach: Adjustable Metric Filters (Confirmed from Live Org + Official Docs)
+
+Dashboard filters for metric tiles do NOT work through Semantic Model dimensions.
+They work through **Adjustable Metric Filters** configured inside each metric definition.
+
+> *"For the Pulse object to respond to a filter, the filter must be a dimension from the same data source that the metric definition connects to, and that dimension must be an adjustable metric filter on the metric definition."* — Salesforce Help
+
+**How to set up a Year filter that drives metric tiles:**
+
+**Step 1 — Add Adjustable Metric Filter to each metric:**
+- Open Semantic Model → click each metric (e.g., `Total_Pipeline_mtc`)
+- Find **"Options"** or **"Adjustable Filters"** section (under "Define metric options")
+- Add `FiscalYear__c` (or whichever field you want users to filter by)
+- Repeat for ALL metrics that should respond to the filter
+- Save
+
+**Step 2 — Add filter widget to dashboard:**
+The filter widget connects to the Semantic Model via the adjustable filter field name.
+Correct XML pattern (confirmed from live org retrieve):
+```json
+{
+  "viewType": "list",
+  "filterOption": {
+    "objectName": "Opportunity_Home",
+    "fieldName": "Fiscal_Year",
+    "dataType": "String",
+    "selectionType": "single"
+  },
+  "isLabelHidden": false
+}
+```
+With `<source>DTC_Sales_Analytics</source>` on the `filterWidgetDefs`.
+
+**Key parameters:**
+| Parameter | Value | Notes |
+|-----------|-------|-------|
+| `objectName` | Semantic Model object label (e.g., `"Opportunity_Home"`) | NOT the DLO API name |
+| `fieldName` | Adjustable filter API name from Semantic Model (e.g., `"Fiscal_Year"`) | Set when configuring metric adjustable filter |
+| `dataType` | `"String"` | Use String even for numeric year fields — prevents 2,025 formatting, enables picklist display |
+| `selectionType` | `"single"` or `"multiple"` | `"single"` for year filter |
+| `viewType` | `"list"` | Shows as clickable list/picklist |
+
+**Two types of metric filters (important distinction):**
+| Filter Type | Set Where | User Can Change? | Example |
+|------------|-----------|-----------------|---------|
+| **Definition Filter** | Metric filter conditions | ❌ No — hardcoded | `IsWon = true` on Won Revenue |
+| **Adjustable Metric Filter** | Metric Options section | ✅ Yes — via dashboard filter widget | `FiscalYear = 2025` |
 
 **Join Account fields (for Industry, Country):**
 ```
