@@ -291,14 +291,16 @@ Correct XML pattern (confirmed from live org retrieve):
 ```
 With `<source>DTC_Sales_Analytics</source>` on the `filterWidgetDefs`.
 
-**Key parameters:**
+**Key parameters (confirmed from live org):**
 | Parameter | Value | Notes |
 |-----------|-------|-------|
-| `objectName` | Semantic Model object label (e.g., `"Opportunity_Home"`) | NOT the DLO API name |
+| `objectName` | Semantic Model object label (e.g., `"Opportunity_Home"`) | NOT the DLO API name (`Opportunity_Home__dll`) |
 | `fieldName` | Adjustable filter API name from Semantic Model (e.g., `"Fiscal_Year"`) | Set when configuring metric adjustable filter |
-| `dataType` | `"String"` | Use String even for numeric year fields — prevents 2,025 formatting, enables picklist display |
-| `selectionType` | `"single"` or `"multiple"` | `"single"` for year filter |
+| `dataType` | `"Number"` for numeric fields, `"String"` for text fields | Must match the adjustable filter field type — using wrong type causes "Unsupported Data Type" error |
+| `selectionType` | `"multiple"` | Allows multi-select; `"single"` restricts to one choice |
 | `viewType` | `"list"` | Shows as clickable list/picklist |
+
+> ⚠️ **`dataType` must match the SM field type**: If the adjustable filter is a Number field (e.g., FiscalYear), use `"Number"`. If it is a Text/String field (e.g., a TEXT calculated field like `STR(INT([Fiscal Year]))`), use `"String"`. Mismatch → "Unsupported Data Type for filter" error. Filter shows `2,025` for Number type — to show `2025` without comma, create a TEXT calculated field with formula `STR(INT([Opportunity_Home].[Fiscal_Year]))` and use that as the adjustable filter instead.
 
 **Two types of metric filters (important distinction):**
 | Filter Type | Set Where | User Can Change? | Example |
@@ -635,3 +637,72 @@ Type these in the dashboard's Agent panel:
 ---
 
 *Generated from live org audit. All KPI values validated via SOQL queries against pr1786449020763.my.salesforce.com on 2026-09-28.*
+
+---
+
+## 🛠️ Visualization XML Deployment — Confirmed Best Practices
+
+### Chart Title
+The chart title shown in the dashboard widget comes from the **`<masterLabel>`** in the AnalyticsVisualization XML — NOT from the `visualSpecification` JSON.
+
+```xml
+<!-- Change this to update the chart title -->
+<masterLabel>Cumulative Won Opportunities Over Time</masterLabel>
+```
+
+**What does NOT work**: Adding `"text": "..."` to `"style": {"title": {...}}` inside the base64-encoded visualSpecification causes an "unexpected error" deployment failure. The `title` object in visualSpecification only supports `{"isVisible": true/false}`.
+
+### Valid Field Function Types (VisualizationFieldFunctionType enum)
+Only `DatePart*` variants are valid for date dimension fields in AnalyticsVisualization XML:
+
+| Function | Groups By | Continuous? |
+|----------|-----------|-------------|
+| `DatePartYear` | Year (e.g., 2025, 2026) | ✅ Shows yearly bars/points |
+| `DatePartQuarter` | Quarter 1–4 (across all years) | Discrete only |
+| `DatePartMonth` | Month 1–12 (across all years) | ⚠️ All Januaries merged |
+| `DatePartWeek` | Week 1–52 (across all years) | Discrete only |
+| `DatePartDay` | Day of year (across all years) | Discrete only |
+| `Sum`, `Avg`, `Min`, `Max`, `Count`, `CountDistinct` | — | For measures |
+
+**`TruncDate*` variants (TruncDateMonth, TruncDateYear, etc.) are NOT valid** — they fail deployment with `'TruncDateMonth' is not a valid value for the enum 'VisualizationFieldFunctionType'`.
+
+> ⚠️ **Limitation**: There is no metadata-deployable way to get a continuous month+year timeline (Jan 2025, Feb 2025, ...) in Tableau Next via XML. `DatePartMonth` groups all Januaries together. The only workaround is creating a separate Year dimension in the SM and using it as a Color encoding in the chart to distinguish years visually.
+
+### Axis Labels
+Axis labels come from **field display labels in the Semantic Model** — not from the visualSpecification JSON. The `customLabel` property in visualSpecification `encodings.fields` is NOT recognized by the platform and causes deployment failures.
+
+**To change axis labels → go to Semantic Model Builder UI:**
+1. Open Tableau Next → Your Workspace → Semantic Model (DTC Sales Analytics)
+2. Click on the field you want to rename (e.g., `Amount1`)
+3. Change the **Display Label** field
+4. Save and publish the Semantic Model
+5. The visualization will pick up the new label automatically
+
+| Current Field API | Current Display | Desired Label | Where to Change |
+|------------------|----------------|---------------|----------------|
+| `Amount1` | "Amount 1" or "Sum of Amount 1" | "Amount" | SM Builder → field label |
+| `Close_Date2` | "Close Date 2" or "Month of Close Date 2" | "Close Date" | SM Builder → field label |
+
+### Metric Tile Labels
+The title shown on each KPI metric tile comes from the **metric's `masterLabel`** in the Semantic Model — not from the dashboard XML.
+
+**To change metric tile labels → go to Semantic Model Builder UI:**
+1. Open the Semantic Model → click the metric
+2. Change the **Label** or **Name** field (the display label shown on tiles)
+3. Save and publish
+
+| Metric API Name | Current Label | Desired Label | Color |
+|----------------|--------------|--------------|-------|
+| `Total_Pipeline_mtc` | "Total Pipeline" | "Total Pipeline" | Default |
+| `Open_Pipeline_mtc` | "Open Pipeline" | "Open Pipeline" | Default |
+| `Won_Revenue_mtc` | "Won Revenue" | "Won Revenue" | Green (#43B263) |
+| `Lost_Revenuew_mtc` | "Lost Revenue" | "Lost Revenue" | Red (#E74C3C) |
+
+### Semantic Model API Accessibility
+The `SemanticModel` metadata type is **NOT accessible** via:
+- SFDX CLI (`sf project retrieve/deploy`) — not in metadata registry
+- Tooling API (`/tooling/sobjects/SemanticModel`) — not supported
+- REST API (`/services/data/v67.0/tableau/semantic-models/`) — NOT_FOUND
+- Connect API — NOT_FOUND
+
+The only way to modify Semantic Model content (metrics, dimensions, field labels, metric filters) is through the **Tableau Next Semantic Model Builder UI** or the raw Metadata API SOAP calls (which require custom tooling).
