@@ -250,64 +250,6 @@ Add each dimension by clicking "+ Add Dimension":
 | Is Closed | IsClosed | Boolean | |
 | Is Won | IsWon | Boolean | |
 
-#### ⚠️ Tableau Next Dimension Limitations (Confirmed from Live Org)
-
-| Dimension Type | Supported | Filter Source | Notes |
-|---------------|-----------|--------------|-------|
-| **Calculated Dimension** | ✅ Yes | ❌ No | Formula-based (e.g. `STR([Obj].[Field])`). Cannot be used as dashboard filter source — clicking filter returns formula expression as error |
-| **Dimension Hierarchy** | ✅ Yes | ⚠️ Partial | Requires each level to have a pre-existing **dimension-type field** in DLO. Number fields (FiscalYear__c) and Timestamp fields cannot fill Year/Quarter levels directly — needs a dedicated year-granularity dimension field |
-| **Native Field Dimension** | ❓ Unknown | ❓ Unknown | "Add Dimension" UI path may only expose calculated + hierarchy options; plain field dimension may not be available in current Tableau Next version |
-
-#### ✅ CORRECT Approach: Adjustable Metric Filters (Confirmed from Live Org + Official Docs)
-
-Dashboard filters for metric tiles do NOT work through Semantic Model dimensions.
-They work through **Adjustable Metric Filters** configured inside each metric definition.
-
-> *"For the Pulse object to respond to a filter, the filter must be a dimension from the same data source that the metric definition connects to, and that dimension must be an adjustable metric filter on the metric definition."* — Salesforce Help
-
-**How to set up a Year filter that drives metric tiles:**
-
-**Step 1 — Add Adjustable Metric Filter to each metric:**
-- Open Semantic Model → click each metric (e.g., `Total_Pipeline_mtc`)
-- Find **"Options"** or **"Adjustable Filters"** section (under "Define metric options")
-- Add `FiscalYear__c` (or whichever field you want users to filter by)
-- Repeat for ALL metrics that should respond to the filter
-- Save
-
-**Step 2 — Add filter widget to dashboard:**
-The filter widget connects to the Semantic Model via the adjustable filter field name.
-Correct XML pattern (confirmed from live org retrieve):
-```json
-{
-  "viewType": "list",
-  "filterOption": {
-    "objectName": "Opportunity_Home",
-    "fieldName": "Fiscal_Year",
-    "dataType": "String",
-    "selectionType": "single"
-  },
-  "isLabelHidden": false
-}
-```
-With `<source>DTC_Sales_Analytics</source>` on the `filterWidgetDefs`.
-
-**Key parameters (confirmed from live org):**
-| Parameter | Value | Notes |
-|-----------|-------|-------|
-| `objectName` | Semantic Model object label (e.g., `"Opportunity_Home"`) | NOT the DLO API name (`Opportunity_Home__dll`) |
-| `fieldName` | Adjustable filter API name from Semantic Model (e.g., `"Fiscal_Year"`) | Set when configuring metric adjustable filter |
-| `dataType` | `"Number"` for numeric fields, `"String"` for text fields | Must match the adjustable filter field type — using wrong type causes "Unsupported Data Type" error |
-| `selectionType` | `"multiple"` | Allows multi-select; `"single"` restricts to one choice |
-| `viewType` | `"list"` | Shows as clickable list/picklist |
-
-> ⚠️ **`dataType` must match the SM field type**: If the adjustable filter is a Number field (e.g., FiscalYear), use `"Number"`. If it is a Text/String field (e.g., a TEXT calculated field like `STR(INT([Fiscal Year]))`), use `"String"`. Mismatch → "Unsupported Data Type for filter" error. Filter shows `2,025` for Number type — to show `2025` without comma, create a TEXT calculated field with formula `STR(INT([Opportunity_Home].[Fiscal_Year]))` and use that as the adjustable filter instead.
-
-**Two types of metric filters (important distinction):**
-| Filter Type | Set Where | User Can Change? | Example |
-|------------|-----------|-----------------|---------|
-| **Definition Filter** | Metric filter conditions | ❌ No — hardcoded | `IsWon = true` on Won Revenue |
-| **Adjustable Metric Filter** | Metric Options section | ✅ Yes — via dashboard filter widget | `FiscalYear = 2025` |
-
 **Join Account fields (for Industry, Country):**
 ```
 In Semantic Model → Relationships → Add Join
@@ -405,54 +347,6 @@ Label:        Lost Opportunities
 Color:        Red (#E74C3C)
 Size:         25% width
 ```
-
-#### ⭐ Metric Tile Card Setup — Display Mode (IMPORTANT)
-
-By default, Tableau Next metric tiles render in **rich view** which includes:
-- Sparkline/trend chart
-- Date range label (e.g., "Jan 1, 1970 – Sep 28, 2026")
-- AI-generated insight text (e.g., "A high volatility trend has been observed...")
-
-**To show only the metric value (clean card style — matching CRM Analytics):**
-
-In the Dashboard Editor:
-1. Click the metric tile to select it
-2. In the right panel → find **"Widget"** settings section
-3. Open **"Card Setup"**
-4. Change display mode to **"Show Value"**
-5. This hides the sparkline, date range, and AI insights — shows only the number
-
-> ✅ Apply "Show Value" to all 4 KPI tiles for the clean card-style display matching CRM Analytics
-
-**XML parameter mapping (metricWidgetDefs) — confirmed via retrieve:**
-
-The `componentVisibility` object inside `metricOption.layout` controls which parts of the tile render:
-
-```json
-"metricOption": {
-  "layout": {
-    "compact": true,
-    "showChart": false,
-    "showInsights": false,
-    "showDateRange": false,
-    "componentVisibility": {
-      "title": false,
-      "details": false,
-      "value": true,
-      "comparison": false,
-      "chart": false,
-      "goals": false,
-      "insights": false
-    }
-  },
-  "sdmApiName": "DTC_Sales_Analytics"
-}
-```
-
-- `value: true` → shows only the metric number
-- All other keys `false` → hides sparkline, date range, AI insights, comparison, goals
-- Add `"accentColor": "#43B263"` (green) or `"#E74C3C"` (red) inside `layout` for colored accent bars
-- Total Pipeline and Open Pipeline have no `accentColor` (defaults to neutral)
 
 ### 2.4 Build Cumulative Time Chart (Row 3) ⚠️ Most Complex
 ```
@@ -636,73 +530,181 @@ Type these in the dashboard's Agent panel:
 
 ---
 
-*Generated from live org audit. All KPI values validated via SOQL queries against pr1786449020763.my.salesforce.com on 2026-09-28.*
+## 🧠 Hard-Won Lessons: AnalyticsVisualization XML Deployment
+
+> These lessons were learned during the Olympus Opportunities CRM Analytics → Tableau Next migration. They apply to any AnalyticsVisualization or AnalyticsDashboard deployed via SF CLI.
+
+### Lesson 1: visualSpecification JSON — All style properties must be INSIDE `style`
+
+The `visualSpecification` is a base64-encoded JSON blob. A critical mistake is placing properties like `axis`, `fit`, `headers`, `showDataPlaceholder`, `marks` (style), `referenceLines` at the **top level**. They must all be nested inside `style`:
+
+```json
+{
+  "layout": "Vizql",
+  "rows": ["F2"],
+  "columns": ["F1"],
+  "marks": { ... },
+  "style": {
+    "axis": { ... },           ✅ INSIDE style
+    "fit": "Standard",         ✅ INSIDE style
+    "headers": { ... },        ✅ INSIDE style
+    "marks": { ... },          ✅ INSIDE style (style.marks ≠ top-level marks)
+    "showDataPlaceholder": false,  ✅ INSIDE style
+    "referenceLines": {},      ✅ INSIDE style
+    "lines": { ... },          ✅ REQUIRED
+    "fonts": { ... }           ✅ REQUIRED
+  }
+}
+```
+
+### Lesson 2: `style.lines` and `style.fonts` are REQUIRED
+
+Omitting either causes: `"Value required for [lines]"` or `"Value required for [fonts]"`. Always include them:
+
+```json
+"fonts": {
+  "actionableHeaders": {"size": 13, "color": "--slds-g-color-palette-electric-blue-40"},
+  "headers": {"size": 13, "color": "--slds-g-color-palette-neutral-20"},
+  "fieldLabels": {"size": 13, "color": "--slds-g-color-palette-neutral-20"},
+  "marks": {"size": 13, "color": "--slds-g-color-palette-neutral-20"},
+  "markLabels": {"size": 13, "color": "--slds-g-color-palette-neutral-20"},
+  "legendLabels": {"size": 13, "color": "--slds-g-color-palette-neutral-20"},
+  "axisTickLabels": {"size": 13, "color": "--slds-g-color-palette-neutral-20"}
+},
+"lines": {
+  "fieldLabelDividerLine": {"color": "--slds-g-color-palette-neutral-80"},
+  "separatorLine": {"color": "--slds-g-color-palette-neutral-80"},
+  "axisLine": {"color": "--slds-g-color-palette-neutral-80"},
+  "zeroLine": {"color": "--slds-g-color-palette-neutral-80"}
+}
+```
+
+### Lesson 3: Discrete dimensions require `style.headers.fields.{fieldKey}`
+
+Any text/discrete dimension (Stage, Opportunity_Type1, Opportunity_Name1, etc.) used in `rows` or `columns` requires an entry in `style.headers.fields`:
+
+```json
+"style": {
+  "headers": {
+    "fields": {
+      "F1": {
+        "isVisible": true,
+        "hiddenValues": [],
+        "showMissingValues": false,
+        "textDirection": "Horizontal"
+      }
+    }
+  }
+}
+```
+
+Without this: `"headers.fields" style is required for the "Stage" ("F1") field.`
+
+**Continuous dimensions (e.g., `Close_Date1` with `DatePartYear`) do NOT need this entry.**
+
+### Lesson 4: Discrete dimensions must NOT have an `axis` entry
+
+For a discrete text dimension placed in `rows` (horizontal bar layout), do NOT add a `style.axis.fields.{fieldKey}` entry. Only the **measure** (continuous field in columns) should have an axis entry.
+
+```json
+"style": {
+  "axis": {
+    "fields": {
+      "F2": { ... }   ✅ Only the measure gets an axis entry
+      // F1 (discrete dimension) should NOT be here
+    }
+  }
+}
+```
+
+### Lesson 5: Sort order format in `viewSpecification`
+
+For sorting by a measure in a visualization with a discrete dimension in rows, the `viewSpecification` sort must reference the **dimension field** with `byField` pointing to the measure:
+
+```json
+// CORRECT — sort dimension F1 descending by measure F2
+"sortOrders": {
+  "fields": {"F1": {"type": "Nested", "order": "Descending", "byField": "F2"}},
+  "rows": [], "columns": []
+}
+
+// WRONG — don't sort by the measure field directly
+"sortOrders": {
+  "fields": {"F2": {"direction": "Descending"}},
+  "rows": [], "columns": []
+}
+```
+
+### Lesson 6: SM field names are auto-generated from the source dataset column names
+
+When a Semantic Model is built on a Wave/Data Cloud CSV dataset, field names are derived from the original column names, **not** from DLO API names. To discover real field names:
+
+```bash
+sf project retrieve start --metadata "AnalyticsVisualization:*" --target-org tableauNextOrg
+# Then decode the base64 visualSpecification to see real objectName and fieldName values
+```
+
+Example for Olympus: `objectName: OlympusOpportunities_DataCloud_csv`  
+Real field names: `Amount`, `Close_Date1`, `Stage`, `Opportunity_Type1`, `Opportunity_Name1`, `Opportunity_Owner`
+
+### Lesson 7: Dashboard deploy fails if referenced vizes don't exist in the org
+
+Even if a viz deploy "Succeeded" in a previous session, verify it still exists before deploying the dashboard:
+
+```bash
+sf project retrieve start --metadata "AnalyticsVisualization:MyViz" --target-org myOrg
+# If: "Entity of type 'AnalyticsVisualization' named 'MyViz' cannot be found"
+# → Redeploy the viz first, then deploy the dashboard
+```
+
+### Lesson 8: Always deploy vizes and dashboard in the same `sf project deploy start` call or verify existence first
+
+When deploying a dashboard that references new visualizations, either:
+- **Option A**: Deploy all vizes + dashboard in a single CLI call (dependency order respected)
+- **Option B**: Deploy vizes first, verify they exist via retrieve, then deploy dashboard
+
+Salesforce sometimes fails to persist newly-created AnalyticsVisualization assets if a bundle deploy fails partway through.
+
+### Lesson 9: KPI tiles in Tableau Next can use visualization type (not metric type)
+
+If a Semantic Model doesn't support metric creation via metadata (e.g., dimensions can't be added via CLI), use a `type: visualization` widget pointing to a single-value viz:
+
+```xml
+<type>visualization</type>
+<vizWidgetDefs>
+    <analyticsVisualization>Sum_of_Amount_Number</analyticsVisualization>
+    <parameters>{...}</parameters>
+</vizWidgetDefs>
+```
+
+### Lesson 10: Dashboard filter widget format
+
+Working filter widget structure:
+
+```xml
+<filterWidgetDefs>
+    <initialValues>null</initialValues>
+    <parameters>{
+        "viewType": "toggle",
+        "filterOption": {
+            "objectName": "OlympusOpportunities_DataCloud_csv",
+            "fieldName": "Close_Date1",
+            "dataType": "Date",
+            "selectionType": "multiple"
+        },
+        "receiveFilterSource": {"filterMode": "all", "widgetIds": [], "publishers": []},
+        "receiveParameterSource": {"parameterMode": "all", "publishers": []}
+    }</parameters>
+    <source>New_Semantic_Model_9fc</source>
+</filterWidgetDefs>
+<label>Close Date</label>
+<type>filter</type>
+<widgetName>filter_close_date</widgetName>
+```
+
+`source` = SM API name (not workspace). `objectName` = original Wave dataset label.
 
 ---
 
-## 🛠️ Visualization XML Deployment — Confirmed Best Practices
-
-### Chart Title
-The chart title shown in the dashboard widget comes from the **`<masterLabel>`** in the AnalyticsVisualization XML — NOT from the `visualSpecification` JSON.
-
-```xml
-<!-- Change this to update the chart title -->
-<masterLabel>Cumulative Won Opportunities Over Time</masterLabel>
-```
-
-**What does NOT work**: Adding `"text": "..."` to `"style": {"title": {...}}` inside the base64-encoded visualSpecification causes an "unexpected error" deployment failure. The `title` object in visualSpecification only supports `{"isVisible": true/false}`.
-
-### Valid Field Function Types (VisualizationFieldFunctionType enum)
-Only `DatePart*` variants are valid for date dimension fields in AnalyticsVisualization XML:
-
-| Function | Groups By | Continuous? |
-|----------|-----------|-------------|
-| `DatePartYear` | Year (e.g., 2025, 2026) | ✅ Shows yearly bars/points |
-| `DatePartQuarter` | Quarter 1–4 (across all years) | Discrete only |
-| `DatePartMonth` | Month 1–12 (across all years) | ⚠️ All Januaries merged |
-| `DatePartWeek` | Week 1–52 (across all years) | Discrete only |
-| `DatePartDay` | Day of year (across all years) | Discrete only |
-| `Sum`, `Avg`, `Min`, `Max`, `Count`, `CountDistinct` | — | For measures |
-
-**`TruncDate*` variants (TruncDateMonth, TruncDateYear, etc.) are NOT valid** — they fail deployment with `'TruncDateMonth' is not a valid value for the enum 'VisualizationFieldFunctionType'`.
-
-> ⚠️ **Limitation**: There is no metadata-deployable way to get a continuous month+year timeline (Jan 2025, Feb 2025, ...) in Tableau Next via XML. `DatePartMonth` groups all Januaries together. The only workaround is creating a separate Year dimension in the SM and using it as a Color encoding in the chart to distinguish years visually.
-
-### Axis Labels
-Axis labels come from **field display labels in the Semantic Model** — not from the visualSpecification JSON. The `customLabel` property in visualSpecification `encodings.fields` is NOT recognized by the platform and causes deployment failures.
-
-**To change axis labels → go to Semantic Model Builder UI:**
-1. Open Tableau Next → Your Workspace → Semantic Model (DTC Sales Analytics)
-2. Click on the field you want to rename (e.g., `Amount1`)
-3. Change the **Display Label** field
-4. Save and publish the Semantic Model
-5. The visualization will pick up the new label automatically
-
-| Current Field API | Current Display | Desired Label | Where to Change |
-|------------------|----------------|---------------|----------------|
-| `Amount1` | "Amount 1" or "Sum of Amount 1" | "Amount" | SM Builder → field label |
-| `Close_Date2` | "Close Date 2" or "Month of Close Date 2" | "Close Date" | SM Builder → field label |
-
-### Metric Tile Labels
-The title shown on each KPI metric tile comes from the **metric's `masterLabel`** in the Semantic Model — not from the dashboard XML.
-
-**To change metric tile labels → go to Semantic Model Builder UI:**
-1. Open the Semantic Model → click the metric
-2. Change the **Label** or **Name** field (the display label shown on tiles)
-3. Save and publish
-
-| Metric API Name | Current Label | Desired Label | Color |
-|----------------|--------------|--------------|-------|
-| `Total_Pipeline_mtc` | "Total Pipeline" | "Total Pipeline" | Default |
-| `Open_Pipeline_mtc` | "Open Pipeline" | "Open Pipeline" | Default |
-| `Won_Revenue_mtc` | "Won Revenue" | "Won Revenue" | Green (#43B263) |
-| `Lost_Revenuew_mtc` | "Lost Revenue" | "Lost Revenue" | Red (#E74C3C) |
-
-### Semantic Model API Accessibility
-The `SemanticModel` metadata type is **NOT accessible** via:
-- SFDX CLI (`sf project retrieve/deploy`) — not in metadata registry
-- Tooling API (`/tooling/sobjects/SemanticModel`) — not supported
-- REST API (`/services/data/v67.0/tableau/semantic-models/`) — NOT_FOUND
-- Connect API — NOT_FOUND
-
-The only way to modify Semantic Model content (metrics, dimensions, field labels, metric filters) is through the **Tableau Next Semantic Model Builder UI** or the raw Metadata API SOAP calls (which require custom tooling).
+*Generated from live org audit. All KPI values validated via SOQL queries against pr1786449020763.my.salesforce.com on 2026-09-28.*
+*Olympus Opportunities migration lessons added 2026-09-30.*
