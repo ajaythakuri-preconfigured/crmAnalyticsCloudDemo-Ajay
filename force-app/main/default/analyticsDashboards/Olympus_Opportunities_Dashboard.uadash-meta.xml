@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AnalyticsDashboard xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <analyticsWorkspace>Olympus_Workspace</analyticsWorkspace>
+    <analyticsWorkspace>Olympus_Workspace_Ajay</analyticsWorkspace>
     <customConfig>null</customConfig>
     <layouts>
         <analyticsDashboard>Olympus_Opportunities_Dashboard</analyticsDashboard>
@@ -103,7 +103,7 @@
         <analyticsDashboard>Olympus_Opportunities_Dashboard</analyticsDashboard>
         <type>visualization</type>
         <vizWidgetDefs>
-            <analyticsVisualization>Sum_of_Amount_Number</analyticsVisualization>
+            <analyticsVisualization>Sum_of_Amount_Number_Ajay</analyticsVisualization>
             <parameters>{&quot;widgetStyle&quot;:{&quot;backgroundColor&quot;:&quot;--slds-g-color-palette-neutral-100&quot;,&quot;borderEdges&quot;:[],&quot;borderColor&quot;:&quot;--slds-g-color-palette-neutral-40&quot;,&quot;borderWidth&quot;:1,&quot;borderRadius&quot;:0},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
         </vizWidgetDefs>
         <widgetName>kpi_total_revenue</widgetName>
@@ -121,6 +121,6 @@
         <asset xsi:nil="true"/>
         <assetType>AnalyticsDashboard</assetType>
         <assetUsageType>Created</assetUsageType>
-        <workspace>Olympus_Workspace</workspace>
+        <workspace>Olympus_Workspace_Ajay</workspace>
     </workspaceAssetRelationships>
 </AnalyticsDashboard>

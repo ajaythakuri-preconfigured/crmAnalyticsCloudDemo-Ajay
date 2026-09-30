@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticsWorkspace xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <masterLabel>Olympus Opportunities Ajay</masterLabel>
+    <workspaceAssetRelationships>
+        <asset xsi:nil="true"/>
+        <assetType>AnalyticsDashboard</assetType>
+        <assetUsageType>Created</assetUsageType>
+        <workspace>Olympus_Workspace_Ajay</workspace>
+    </workspaceAssetRelationships>
+</AnalyticsWorkspace>
