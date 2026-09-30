@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticsVisualization xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <analyticsWorkspace>Olympus_Workspace</analyticsWorkspace>
+    <dataSource>New_Semantic_Model_9fc</dataSource>
+    <fields>
+        <displayCategory>Continuous</displayCategory>
+        <fieldKey>F2</fieldKey>
+        <fieldName>Amount</fieldName>
+        <function>Sum</function>
+        <objectName>OlympusOpportunities_DataCloud_csv</objectName>
+        <role>Measure</role>
+        <type>Field</type>
+    </fields>
+    <masterLabel>Sum of Amount Number</masterLabel>
+    <version>67.14</version>
+    <views>
+        <fullName>Sum_of_Amount_Number_default</fullName>
+        <isOriginal>true</isOriginal>
+        <masterLabel>default</masterLabel>
+        <version>67.14</version>
+        <viewSpecification>{&quot;filter&quot;:{&quot;filters&quot;:[]},&quot;sortOrders&quot;:{&quot;fields&quot;:{},&quot;rows&quot;:[],&quot;columns&quot;:[]},&quot;style&quot;:{&quot;headers&quot;:{&quot;rows&quot;:{&quot;sizing&quot;:{&quot;fieldWidth&quot;:{}}},&quot;columns&quot;:{&quot;sizing&quot;:{&quot;fieldHeight&quot;:{}}}}}}</viewSpecification>
+    </views>
+    <visualSpecification>eyJsYXlvdXQiOiJSYWRpYWwiLCJsZWdlbmRzIjp7fSwic2xpY2VzIjpbXSwicmluZ3MiOltdLCJtYXJrcyI6eyJwYW5lcyI6eyJ0eXBlIjoiRG9udXQiLCJpc0F1dG9tYXRpYyI6dHJ1ZSwic3RhY2siOnsiaXNBdXRvbWF0aWMiOnRydWUsImlzU3RhY2tlZCI6dHJ1ZX0sImVuY29kaW5ncyI6W119fSwic3R5bGUiOnsidGl0bGUiOnsiaXNWaXNpYmxlIjp0cnVlfSwiZmllbGRMYWJlbHMiOnsicm93cyI6eyJzaG93TGFiZWxzIjpmYWxzZSwic2hvd0RpdmlkZXJMaW5lIjpmYWxzZX0sImNvbHVtbnMiOnsic2hvd0xhYmVscyI6ZmFsc2UsInNob3dEaXZpZGVyTGluZSI6ZmFsc2V9fSwiZm9udHMiOnsiYWN0aW9uYWJsZUhlYWRlcnMiOnsic2l6ZSI6MTMsImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1lbGVjdHJpYy1ibHVlLTQwIn0sImhlYWRlcnMiOnsic2l6ZSI6MTMsImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTIwIn0sImZpZWxkTGFiZWxzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9LCJtYXJrcyI6eyJzaXplIjoxMywiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtMjAifSwibWFya0xhYmVscyI6eyJzaXplIjoxMywiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtMjAifSwibGVnZW5kTGFiZWxzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9LCJheGlzVGlja0xhYmVscyI6eyJzaXplIjoxMywiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtMjAifX0sInNoYWRpbmciOnsiYmFja2dyb3VuZENvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTEwMCIsImJhbmRpbmciOnsicm93cyI6eyJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC05MCJ9fX0sImxpbmVzIjp7ImZpZWxkTGFiZWxEaXZpZGVyTGluZSI6eyJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC04MCJ9LCJzZXBhcmF0b3JMaW5lIjp7ImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTgwIn0sImF4aXNMaW5lIjp7ImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTgwIn0sInplcm9MaW5lIjp7ImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTgwIn19LCJlbmNvZGluZ3MiOnsiZmllbGRzIjp7fX0sIm1hcmtzIjp7InBhbmVzIjp7ImxhYmVsIjp7ImNhbk92ZXJsYXBMYWJlbHMiOmZhbHNlLCJzaG93TWFya0xhYmVscyI6ZmFsc2UsIm1hcmtzVG9MYWJlbCI6eyJ0eXBlIjoiQWxsIn0sInRleHREaXJlY3Rpb24iOiJIb3Jpem9udGFsIn0sImNvbG9yIjp7ImNvbG9yIjoiI0ZGRkZGRiJ9LCJyYW5nZSI6eyJyZXZlcnNlIjp0cnVlfSwic2l6ZSI6eyJ0eXBlIjoiUGVyY2VudGFnZSIsImlzQXV0b21hdGljIjp0cnVlLCJ2YWx1ZSI6ODB9LCJpc0F1dG9tYXRpY1NpemUiOnRydWUsImlzU3RhY2tpbmdBeGlzQ2VudGVyZWQiOmZhbHNlLCJvcGFjaXR5IjoxMDAsImlzQXV0b21hdGljT3BhY2l0eSI6dHJ1ZX19LCJiYW4iOnsiZmllbGRzIjp7IkYyIjp7ImZpZWxkTGFiZWwiOnsic2hvd0xhYmVscyI6ZmFsc2UsInNob3dEaXZpZGVyTGluZSI6ZmFsc2V9LCJmb3JtYXQiOnsibnVtYmVyRm9ybWF0SW5mbyI6eyJ0eXBlIjoiTnVtYmVyU2hvcnQiLCJkZWNpbWFsUGxhY2VzIjoyLCJuZWdhdGl2ZVZhbHVlc0Zvcm1hdCI6IkF1dG8iLCJkaXNwbGF5VW5pdHMiOiJBdXRvIiwicHJlZml4IjoiIiwic3VmZml4IjoiIiwiaW5jbHVkZVRob3VzYW5kU2VwYXJhdG9yIjp0cnVlfX19fX19LCJiYW4iOlsiRjIiXX0=</visualSpecification>
+    <workspaceAssetRelationships>
+        <asset xsi:nil="true"/>
+        <assetType>AnalyticsVisualization</assetType>
+        <assetUsageType>Created</assetUsageType>
+        <workspace>Olympus_Workspace</workspace>
+    </workspaceAssetRelationships>
+</AnalyticsVisualization>

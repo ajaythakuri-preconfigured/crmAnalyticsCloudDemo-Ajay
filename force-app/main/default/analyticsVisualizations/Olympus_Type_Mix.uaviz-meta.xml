@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticsVisualization xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <analyticsWorkspace>Olympus_Workspace</analyticsWorkspace>
+    <dataSource>New_Semantic_Model_9fc</dataSource>
+    <fields>
+        <displayCategory>Discrete</displayCategory>
+        <fieldKey>F1</fieldKey>
+        <fieldName>Opportunity_Type1</fieldName>
+        <objectName>OlympusOpportunities_DataCloud_csv</objectName>
+        <role>Dimension</role>
+        <type>Field</type>
+    </fields>
+    <fields>
+        <displayCategory>Continuous</displayCategory>
+        <fieldKey>F2</fieldKey>
+        <fieldName>Amount</fieldName>
+        <function>Sum</function>
+        <objectName>OlympusOpportunities_DataCloud_csv</objectName>
+        <role>Measure</role>
+        <type>Field</type>
+    </fields>
+    <masterLabel>Revenue by Opportunity Type</masterLabel>
+    <version>67.14</version>
+    <views>
+        <fullName>Olympus_Type_Mix_default</fullName>
+        <isOriginal>true</isOriginal>
+        <masterLabel>default</masterLabel>
+        <version>67.14</version>
+        <viewSpecification>{&quot;filter&quot;:{&quot;filters&quot;:[]},&quot;sortOrders&quot;:{&quot;fields&quot;:{},&quot;rows&quot;:[],&quot;columns&quot;:[]},&quot;style&quot;:{&quot;headers&quot;:{&quot;rows&quot;:{&quot;sizing&quot;:{&quot;fieldWidth&quot;:{}}},&quot;columns&quot;:{&quot;sizing&quot;:{&quot;fieldHeight&quot;:{}}}}}}</viewSpecification>
+    </views>
+    <visualSpecification>eyJsYXlvdXQiOiJWaXpxbCIsImxlZ2VuZHMiOnt9LCJyb3dzIjpbIkYyIl0sImNvbHVtbnMiOlsiRjEiXSwibWFya3MiOnsicGFuZXMiOnsidHlwZSI6IkJhciIsImlzQXV0b21hdGljIjpmYWxzZSwic3RhY2siOnsiaXNBdXRvbWF0aWMiOmZhbHNlLCJpc1N0YWNrZWQiOmZhbHNlfSwiZW5jb2RpbmdzIjpbXX0sImZpZWxkcyI6e30sImhlYWRlcnMiOnsidHlwZSI6IlRleHQiLCJlbmNvZGluZ3MiOltdLCJpc0F1dG9tYXRpYyI6dHJ1ZSwic3RhY2siOnsiaXNBdXRvbWF0aWMiOnRydWUsImlzU3RhY2tlZCI6ZmFsc2V9fX0sInJlZmVyZW5jZUxpbmVzIjp7fSwiZm9yZWNhc3RzIjp7fSwibWVhc3VyZVZhbHVlcyI6W10sInN0eWxlIjp7InRpdGxlIjp7ImlzVmlzaWJsZSI6dHJ1ZX0sImZpZWxkTGFiZWxzIjp7InJvd3MiOnsic2hvd0xhYmVscyI6dHJ1ZSwic2hvd0RpdmlkZXJMaW5lIjpmYWxzZX0sImNvbHVtbnMiOnsic2hvd0xhYmVscyI6dHJ1ZSwic2hvd0RpdmlkZXJMaW5lIjpmYWxzZX19LCJmb250cyI6eyJhY3Rpb25hYmxlSGVhZGVycyI6eyJzaXplIjoxMywiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLWVsZWN0cmljLWJsdWUtNDAifSwiaGVhZGVycyI6eyJzaXplIjoxMywiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtMjAifSwiZmllbGRMYWJlbHMiOnsic2l6ZSI6MTMsImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTIwIn0sIm1hcmtzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9LCJtYXJrTGFiZWxzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9LCJsZWdlbmRMYWJlbHMiOnsic2l6ZSI6MTMsImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTIwIn0sImF4aXNUaWNrTGFiZWxzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9fSwic2hhZGluZyI6eyJiYWNrZ3JvdW5kQ29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtMTAwIiwiYmFuZGluZyI6eyJyb3dzIjp7ImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTkwIn19fSwibGluZXMiOnsiZmllbGRMYWJlbERpdmlkZXJMaW5lIjp7ImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTgwIn0sInNlcGFyYXRvckxpbmUiOnsiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtODAifSwiYXhpc0xpbmUiOnsiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtODAifSwiemVyb0xpbmUiOnsiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtODAifX0sImVuY29kaW5ncyI6eyJmaWVsZHMiOnsiRjIiOnsiZGVmYXVsdHMiOnsiZm9ybWF0Ijp7Im51bWJlckZvcm1hdEluZm8iOnsidHlwZSI6Ik51bWJlciIsImRlY2ltYWxQbGFjZXMiOjAsIm5lZ2F0aXZlVmFsdWVzRm9ybWF0IjoiQXV0byIsImRpc3BsYXlVbml0cyI6IkF1dG8iLCJwcmVmaXgiOiIkIiwic3VmZml4IjoiIiwiaW5jbHVkZVRob3VzYW5kU2VwYXJhdG9yIjp0cnVlfX19fX19LCJmaXQiOiJTdGFuZGFyZCIsIm1hcmtzIjp7InBhbmVzIjp7ImxhYmVsIjp7ImNhbk92ZXJsYXBMYWJlbHMiOmZhbHNlLCJzaG93TWFya0xhYmVscyI6ZmFsc2UsIm1hcmtzVG9MYWJlbCI6eyJ0eXBlIjoiQWxsIn0sInRleHREaXJlY3Rpb24iOiJIb3Jpem9udGFsIn0sImNvbG9yIjp7ImNvbG9yIjoiIn0sInJhbmdlIjp7InJldmVyc2UiOnRydWV9LCJzaXplIjp7InR5cGUiOiJQaXhlbCIsImlzQXV0b21hdGljIjp0cnVlLCJ2YWx1ZSI6MTN9LCJpc0F1dG9tYXRpY1NpemUiOnRydWUsImlzU3RhY2tpbmdBeGlzQ2VudGVyZWQiOmZhbHNlLCJvcGFjaXR5IjoxMDAsImlzQXV0b21hdGljT3BhY2l0eSI6dHJ1ZX0sImhlYWRlcnMiOnsiY29sb3IiOnsiY29sb3IiOiIifSwibGFiZWwiOnsiY2FuT3ZlcmxhcExhYmVscyI6ZmFsc2UsInNob3dNYXJrTGFiZWxzIjpmYWxzZSwibWFya3NUb0xhYmVsIjp7InR5cGUiOiJBbGwifSwidGV4dERpcmVjdGlvbiI6Ikhvcml6b250YWwifSwiaXNBdXRvbWF0aWNTaXplIjp0cnVlLCJyYW5nZSI6eyJyZXZlcnNlIjp0cnVlfSwic2l6ZSI6eyJ0eXBlIjoiUGl4ZWwiLCJpc0F1dG9tYXRpYyI6dHJ1ZSwidmFsdWUiOjEzfSwib3BhY2l0eSI6MTAwLCJpc0F1dG9tYXRpY09wYWNpdHkiOnRydWV9LCJmaWVsZHMiOnt9fSwic2hvd0RhdGFQbGFjZWhvbGRlciI6ZmFsc2UsImhlYWRlcnMiOnsiZmllbGRzIjp7IkYxIjp7ImlzVmlzaWJsZSI6dHJ1ZSwiaGlkZGVuVmFsdWVzIjpbXSwic2hvd01pc3NpbmdWYWx1ZXMiOmZhbHNlLCJ0ZXh0RGlyZWN0aW9uIjoiSG9yaXpvbnRhbCJ9fSwicm93cyI6eyJtZXJnZVJlcGVhdGVkQ2VsbHMiOnRydWUsInNob3dJbmRleCI6ZmFsc2UsInNpemluZyI6eyJmaWVsZFdpZHRoIjp7fX19LCJjb2x1bW5zIjp7Im1lcmdlUmVwZWF0ZWRDZWxscyI6dHJ1ZSwic2hvd0luZGV4IjpmYWxzZSwic2l6aW5nIjp7ImZpZWxkSGVpZ2h0Ijp7fX19fSwiYXhpcyI6eyJmaWVsZHMiOnsiRjIiOnsiaXNWaXNpYmxlIjp0cnVlLCJyYW5nZSI6eyJ0eXBlIjoiQXV0byIsImluY2x1ZGVaZXJvIjp0cnVlfSwic2NhbGUiOnsiZm9ybWF0Ijp7Im51bWJlckZvcm1hdEluZm8iOnsidHlwZSI6Ik51bWJlclNob3J0IiwiZGVjaW1hbFBsYWNlcyI6MCwibmVnYXRpdmVWYWx1ZXNGb3JtYXQiOiJBdXRvIiwiZGlzcGxheVVuaXRzIjoiQXV0byIsInByZWZpeCI6IiQiLCJzdWZmaXgiOiIiLCJpbmNsdWRlVGhvdXNhbmRTZXBhcmF0b3IiOnRydWV9fX0sInRpY2tzIjp7Im1ham9yVGlja3MiOnsidHlwZSI6IkF1dG8ifSwibWlub3JUaWNrcyI6eyJ0eXBlIjoiQXV0byJ9fSwiaXNaZXJvTGluZVZpc2libGUiOnRydWV9LCJGMSI6eyJpc1Zpc2libGUiOnRydWUsInJhbmdlIjp7InR5cGUiOiJBdXRvIiwiaW5jbHVkZVplcm8iOmZhbHNlfSwic2NhbGUiOnsiZm9ybWF0Ijp7fX0sInRpY2tzIjp7Im1ham9yVGlja3MiOnsidHlwZSI6IkF1dG8ifSwibWlub3JUaWNrcyI6eyJ0eXBlIjoiQXV0byJ9fSwiaXNaZXJvTGluZVZpc2libGUiOnRydWV9fX0sInJlZmVyZW5jZUxpbmVzIjp7fX19</visualSpecification>
+    <workspaceAssetRelationships>
+        <asset xsi:nil="true"/>
+        <assetType>AnalyticsVisualization</assetType>
+        <assetUsageType>Created</assetUsageType>
+        <workspace>Olympus_Workspace</workspace>
+    </workspaceAssetRelationships>
+</AnalyticsVisualization>
