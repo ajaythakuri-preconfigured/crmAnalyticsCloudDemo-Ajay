@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AnalyticsVisualization xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <analyticsWorkspace>Olympus_Workspace_Ajay</analyticsWorkspace>
+    <dataSource>New_Semantic_Model_9fc2</dataSource>
+    <fields>
+        <displayCategory>Discrete</displayCategory>
+        <fieldKey>F1</fieldKey>
+        <fieldName>Type1</fieldName>
+        <objectName>Opportunity_Home1</objectName>
+        <role>Dimension</role>
+        <type>Field</type>
+    </fields>
+    <fields>
+        <displayCategory>Continuous</displayCategory>
+        <fieldKey>F2</fieldKey>
+        <fieldName>Amount2</fieldName>
+        <function>Sum</function>
+        <objectName>Opportunity_Home1</objectName>
+        <role>Measure</role>
+        <type>Field</type>
+    </fields>
+    <masterLabel>Opportunity Type Mix Ajay V2</masterLabel>
+    <version>67.14</version>
+    <views>
+        <fullName>Opp_Type_Mix_Ajay_V2_default</fullName>
+        <isOriginal>true</isOriginal>
+        <masterLabel>default</masterLabel>
+        <version>67.14</version>
+        <viewSpecification>{&quot;filter&quot;:{&quot;filters&quot;:[]},&quot;sortOrders&quot;:{&quot;fields&quot;:{},&quot;rows&quot;:[],&quot;columns&quot;:[]},&quot;style&quot;:{&quot;headers&quot;:{&quot;rows&quot;:{&quot;sizing&quot;:{&quot;fieldWidth&quot;:{}}},&quot;columns&quot;:{&quot;sizing&quot;:{&quot;fieldHeight&quot;:{}}}}}}</viewSpecification>
+    </views>
+    <visualSpecification>eyJsYXlvdXQiOiJSYWRpYWwiLCJsZWdlbmRzIjp7fSwic2xpY2VzIjpbIkYxIl0sInJpbmdzIjpbXSwibWFya3MiOnsicGFuZXMiOnsidHlwZSI6IkRvbnV0IiwiaXNBdXRvbWF0aWMiOmZhbHNlLCJzdGFjayI6eyJpc0F1dG9tYXRpYyI6dHJ1ZSwiaXNTdGFja2VkIjp0cnVlfSwiZW5jb2RpbmdzIjpbXX19LCJzdHlsZSI6eyJ0aXRsZSI6eyJpc1Zpc2libGUiOnRydWV9LCJmaWVsZExhYmVscyI6eyJyb3dzIjp7InNob3dMYWJlbHMiOmZhbHNlLCJzaG93RGl2aWRlckxpbmUiOmZhbHNlfSwiY29sdW1ucyI6eyJzaG93TGFiZWxzIjpmYWxzZSwic2hvd0RpdmlkZXJMaW5lIjpmYWxzZX19LCJmb250cyI6eyJhY3Rpb25hYmxlSGVhZGVycyI6eyJzaXplIjoxMywiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLWVsZWN0cmljLWJsdWUtNDAifSwiaGVhZGVycyI6eyJzaXplIjoxMywiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtMjAifSwiZmllbGRMYWJlbHMiOnsic2l6ZSI6MTMsImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTIwIn0sIm1hcmtzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9LCJtYXJrTGFiZWxzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9LCJsZWdlbmRMYWJlbHMiOnsic2l6ZSI6MTMsImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTIwIn0sImF4aXNUaWNrTGFiZWxzIjp7InNpemUiOjEzLCJjb2xvciI6Ii0tc2xkcy1nLWNvbG9yLXBhbGV0dGUtbmV1dHJhbC0yMCJ9fSwic2hhZGluZyI6eyJiYWNrZ3JvdW5kQ29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtMTAwIiwiYmFuZGluZyI6eyJyb3dzIjp7ImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTkwIn19fSwibGluZXMiOnsiZmllbGRMYWJlbERpdmlkZXJMaW5lIjp7ImNvbG9yIjoiLS1zbGRzLWctY29sb3ItcGFsZXR0ZS1uZXV0cmFsLTgwIn0sInNlcGFyYXRvckxpbmUiOnsiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtODAifSwiYXhpc0xpbmUiOnsiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtODAifSwiemVyb0xpbmUiOnsiY29sb3IiOiItLXNsZHMtZy1jb2xvci1wYWxldHRlLW5ldXRyYWwtODAifX0sImVuY29kaW5ncyI6eyJmaWVsZHMiOnt9fSwibWFya3MiOnsicGFuZXMiOnsibGFiZWwiOnsiY2FuT3ZlcmxhcExhYmVscyI6ZmFsc2UsInNob3dNYXJrTGFiZWxzIjp0cnVlLCJtYXJrc1RvTGFiZWwiOnsidHlwZSI6IkFsbCJ9LCJ0ZXh0RGlyZWN0aW9uIjoiSG9yaXpvbnRhbCJ9LCJjb2xvciI6eyJjb2xvciI6IiJ9LCJyYW5nZSI6eyJyZXZlcnNlIjpmYWxzZX0sInNpemUiOnsidHlwZSI6IlBlcmNlbnRhZ2UiLCJpc0F1dG9tYXRpYyI6dHJ1ZSwidmFsdWUiOjcwfSwiaXNBdXRvbWF0aWNTaXplIjp0cnVlLCJpc1N0YWNraW5nQXhpc0NlbnRlcmVkIjpmYWxzZSwib3BhY2l0eSI6MTAwLCJpc0F1dG9tYXRpY09wYWNpdHkiOnRydWV9fSwiYmFuIjp7ImZpZWxkcyI6eyJGMiI6eyJmaWVsZExhYmVsIjp7InNob3dMYWJlbHMiOmZhbHNlLCJzaG93RGl2aWRlckxpbmUiOmZhbHNlfSwiZm9ybWF0Ijp7Im51bWJlckZvcm1hdEluZm8iOnsidHlwZSI6Ik51bWJlclNob3J0IiwiZGVjaW1hbFBsYWNlcyI6MSwibmVnYXRpdmVWYWx1ZXNGb3JtYXQiOiJBdXRvIiwiZGlzcGxheVVuaXRzIjoiQXV0byIsInByZWZpeCI6IiQiLCJzdWZmaXgiOiIiLCJpbmNsdWRlVGhvdXNhbmRTZXBhcmF0b3IiOnRydWV9fX19fX0sImJhbiI6WyJGMiJdfQ==</visualSpecification>
+    <workspaceAssetRelationships>
+        <asset xsi:nil="true"/>
+        <assetType>AnalyticsVisualization</assetType>
+        <assetUsageType>Created</assetUsageType>
+        <workspace>Olympus_Workspace_Ajay</workspace>
+    </workspaceAssetRelationships>
+</AnalyticsVisualization>
