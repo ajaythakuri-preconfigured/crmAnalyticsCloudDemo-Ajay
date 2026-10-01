@@ -81,8 +81,8 @@
         <analyticsDashboard>Olympus_Opportunities_Dashboard</analyticsDashboard>
         <filterWidgetDefs>
             <initialValues>null</initialValues>
-            <parameters>{&quot;viewType&quot;:&quot;toggle&quot;,&quot;filterOption&quot;:{&quot;objectName&quot;:&quot;OlympusOpportunities_DataCloud_csv&quot;,&quot;fieldName&quot;:&quot;Close_Date1&quot;,&quot;dataType&quot;:&quot;Date&quot;,&quot;selectionType&quot;:&quot;multiple&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
-            <source>New_Semantic_Model_9fc</source>
+            <parameters>{&quot;viewType&quot;:&quot;toggle&quot;,&quot;filterOption&quot;:{&quot;objectName&quot;:&quot;Opportunity_Home1&quot;,&quot;fieldName&quot;:&quot;Close_Date3&quot;,&quot;dataType&quot;:&quot;Date&quot;,&quot;selectionType&quot;:&quot;multiple&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
+            <source>New_Semantic_Model_9fc2</source>
         </filterWidgetDefs>
         <label>Close Date</label>
         <type>filter</type>
@@ -92,8 +92,8 @@
         <analyticsDashboard>Olympus_Opportunities_Dashboard</analyticsDashboard>
         <filterWidgetDefs>
             <initialValues>null</initialValues>
-            <parameters>{&quot;viewType&quot;:&quot;toggle&quot;,&quot;filterOption&quot;:{&quot;objectName&quot;:&quot;OlympusOpportunities_DataCloud_csv&quot;,&quot;fieldName&quot;:&quot;Opportunity_Owner&quot;,&quot;dataType&quot;:&quot;Text&quot;,&quot;selectionType&quot;:&quot;multiple&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
-            <source>New_Semantic_Model_9fc</source>
+            <parameters>{&quot;viewType&quot;:&quot;toggle&quot;,&quot;filterOption&quot;:{&quot;objectName&quot;:&quot;Opportunity_Home1&quot;,&quot;fieldName&quot;:&quot;Owner_Name2&quot;,&quot;dataType&quot;:&quot;Text&quot;,&quot;selectionType&quot;:&quot;multiple&quot;},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
+            <source>New_Semantic_Model_9fc2</source>
         </filterWidgetDefs>
         <label>Opportunity Owner</label>
         <type>filter</type>
@@ -103,7 +103,7 @@
         <analyticsDashboard>Olympus_Opportunities_Dashboard</analyticsDashboard>
         <type>visualization</type>
         <vizWidgetDefs>
-            <analyticsVisualization>Sum_of_Amount_Number_Ajay</analyticsVisualization>
+            <analyticsVisualization>KPI_Revenue_Ajay_V2</analyticsVisualization>
             <parameters>{&quot;widgetStyle&quot;:{&quot;backgroundColor&quot;:&quot;--slds-g-color-palette-neutral-100&quot;,&quot;borderEdges&quot;:[],&quot;borderColor&quot;:&quot;--slds-g-color-palette-neutral-40&quot;,&quot;borderWidth&quot;:1,&quot;borderRadius&quot;:0},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
         </vizWidgetDefs>
         <widgetName>kpi_total_revenue</widgetName>
@@ -112,7 +112,7 @@
         <analyticsDashboard>Olympus_Opportunities_Dashboard</analyticsDashboard>
         <type>visualization</type>
         <vizWidgetDefs>
-            <analyticsVisualization>Olympus_Rev_by_Year</analyticsVisualization>
+            <analyticsVisualization>Rev_by_Year_Ajay_V2</analyticsVisualization>
             <parameters>{&quot;widgetStyle&quot;:{&quot;backgroundColor&quot;:&quot;--slds-g-color-palette-neutral-100&quot;,&quot;borderEdges&quot;:[],&quot;borderColor&quot;:&quot;--slds-g-color-palette-neutral-40&quot;,&quot;borderWidth&quot;:1,&quot;borderRadius&quot;:0},&quot;receiveFilterSource&quot;:{&quot;filterMode&quot;:&quot;all&quot;,&quot;widgetIds&quot;:[],&quot;publishers&quot;:[]},&quot;receiveParameterSource&quot;:{&quot;parameterMode&quot;:&quot;all&quot;,&quot;publishers&quot;:[]}}</parameters>
         </vizWidgetDefs>
         <widgetName>chart_rev_by_year</widgetName>
